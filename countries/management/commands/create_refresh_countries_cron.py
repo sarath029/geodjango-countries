@@ -1,13 +1,17 @@
 from django.core.management.base import BaseCommand
 from django_celery_beat.models import IntervalSchedule, PeriodicTask
+
 from countries.tasks import refresh_countries
+
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
 
         refresh_countries.delay()
 
-        task_exists = PeriodicTask.objects.filter(task="countries.tasks.refresh_countries")
+        task_exists = PeriodicTask.objects.filter(
+            task="countries.tasks.refresh_countries"
+        )
 
         if not task_exists:
 

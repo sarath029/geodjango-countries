@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y gcc
 RUN apt-get update ; apt-get --assume-yes install binutils libproj-dev gdal-bin
 RUN pip install pipenv && pip install psycopg2
 
-COPY Pipfile Pipfile.lock ./  
+COPY Pipfile Pipfile.lock ./
 
 RUN pipenv install
 

@@ -1,10 +1,10 @@
 import json
 
 import requests
-from celery import shared_task
 from django.conf import settings
 from django.contrib.gis.geos import GEOSGeometry, MultiPolygon, Polygon
 
+from celery import shared_task
 from countries.models import Country
 
 
