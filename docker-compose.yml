@@ -21,7 +21,7 @@ services:
     healthcheck:
       test: "exit 0"
 
-  backend:
+  backend_1:
     build:
       context: .
       dockerfile: Dockerfile
@@ -29,8 +29,6 @@ services:
     restart: on-failure
     volumes:
       - .:/code
-    ports:
-      - "8000:8000"
     environment:
       - DB_HOST=postgis_db
       - DB_NAME=pixxel_countries
@@ -39,6 +37,24 @@ services:
     depends_on:
       - postgis_db
       - redis
+
+  backend_2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /start
+    restart: on-failure
+    volumes:
+      - .:/code
+    environment:
+      - DB_HOST=postgis_db
+      - DB_NAME=pixxel_countries
+      - DB_USER=pixxel_user
+      - DB_PASSWORD=pixxel@123
+    depends_on:
+      - postgis_db
+      - redis
+
 
   celery-worker:
     build:
@@ -73,6 +89,15 @@ services:
     depends_on:
       - postgis_db
       - redis
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - backend_1
+      - backend_2
+    restart: on-failure
 
 volumes:
   db_backups:

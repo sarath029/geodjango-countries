@@ -27,10 +27,11 @@ docker compose up
 This will create the following services 
 * redis - Message broker for our infrastructure setup, background tasks are pushed to redis by either django bakend or celery-beat to be later consumed by celery-worker
 * postgis-db - PostGIS DB to store geospatial data
-* backend - GeoDjango server which starts on port 8000, this server is connected to Redis broker and PostGIS database.
+* backend - GeoDjango server, this server is connected to Redis broker and PostGIS database, Two instances will be created on startup to maintain zero down time and manage traffic effectively.
+(K8 can be used to manage the configurations more effectively).
 * celery-worker - A worker service which continuously listens to redis for new tasks and executes them in the background silently.
 * celery-beat - For periodic tasks, it checks the DB for periodic task configurations and uses a scheduler to push tasks to redis which is consumed by the worker.
-
+* nginx - Loadbalancer/reverse proxy to distribute the load between two instances of GeoDjango backend.
 
 Note - Migrate command will be run by default whenever the project is setup (Included in the startup command)
 ```
