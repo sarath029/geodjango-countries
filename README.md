@@ -33,6 +33,12 @@ This will create the following services
 * celery-beat - For periodic tasks, it checks the DB for periodic task configurations and uses a scheduler to push tasks to redis which is consumed by the worker.
 * nginx - Loadbalancer/reverse proxy to distribute the load between two instances of GeoDjango backend.
 
+
+Application can be accessed on port 80 after setup - 
+eg API to test - http://localhost/api/countries/ 
+
+(Please wait for all the services to be up before trying to hit the API and please note that no other existing services should be running on port 80)
+
 Note - Migrate command will be run by default whenever the project is setup (Included in the startup command)
 ```
 python3 manage.py migrate
