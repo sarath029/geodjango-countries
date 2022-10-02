@@ -1,0 +1,79 @@
+version: "3.9"
+
+services:
+
+  redis:
+    image: redis:alpine
+  
+  postgis_db:
+    image: kartoza/postgis:14-3.2
+    volumes:
+      - postgis_data:/var/lib/postgresql
+      - db_backups:/backups
+    environment:
+      # If you need to create multiple database you can add coma separated databases eg gis,data
+      - POSTGRES_DB=pixxel_countries
+      - POSTGRES_USER=pixxel_user
+      - POSTGRES_PASS=pixxel@123
+      # Add extensions you need to be enabled by default in the DB. Default are the five specified below
+      - POSTGRES_MULTIPLE_EXTENSIONS=postgis,hstore,postgis_topology,postgis_raster,pgrouting
+    restart: on-failure
+    healthcheck:
+      test: "exit 0"
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /start
+    restart: on-failure
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=postgis_db
+      - DB_NAME=pixxel_countries
+      - DB_USER=pixxel_user
+      - DB_PASSWORD=pixxel@123
+    depends_on:
+      - postgis_db
+      - redis
+
+  celery-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /start-celeryworker
+    volumes:
+      - .:/code
+    environment:
+      - DB_HOST=postgis_db
+      - DB_NAME=pixxel_countries
+      - DB_USER=pixxel_user
+      - DB_PASSWORD=pixxel@123
+    restart: on-failure
+    depends_on:
+      - postgis_db
+      - redis
+  
+  celery-beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /start-celerybeat
+    volumes:
+      - .:/code
+    environment:
+      - DB_HOST=postgis_db
+      - DB_NAME=pixxel_countries
+      - DB_USER=pixxel_user
+      - DB_PASSWORD=pixxel@123
+    restart: on-failure
+    depends_on:
+      - postgis_db
+      - redis
+
+volumes:
+  db_backups:
+  postgis_data:

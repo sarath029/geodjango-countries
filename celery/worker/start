@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+
+pipenv run celery -A pixxel_countries worker -l INFO

@@ -80,7 +80,7 @@ WSGI_APPLICATION = "pixxel_countries.wsgi.application"
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
-CELERY_BROKER_URL = "redis://localhost"
+CELERY_BROKER_URL = "redis://redis"
 CELERY_TASK_ALWAYS_EAGER = False
 
 if os.environ.get("CELERY_TASK_DEFAULT_QUEUE"):
@@ -93,11 +93,11 @@ if os.environ.get("CELERY_TASK_DEFAULT_QUEUE"):
 DATABASES = {
     "default": {
         "ENGINE": "django.contrib.gis.db.backends.postgis",
-        "NAME": "gis",
-        "USER": "docker",
-        "PASSWORD": "docker",
-        "PORT": "5432",
-        "HOST": "localhost",
+        'NAME': os.environ['DB_NAME'],
+        'USER': os.environ['DB_USER'],
+        'PASSWORD': os.environ['DB_PASSWORD'],
+        'HOST': os.environ['DB_HOST'],
+        'PORT': '5432',
     },
 }
 
