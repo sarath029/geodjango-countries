@@ -1,0 +1,203 @@
+{
+	"info": {
+		"_postman_id": "12d2bb6a-9d40-405c-b2c6-0a9a41ddbcf0",
+		"name": "Pixxel Countries",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Neighbouring Countries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/countries/105/neighbouring_countries",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"countries",
+						"105",
+						"neighbouring_countries"
+					],
+					"query": [
+						{
+							"key": "name__contains",
+							"value": "Ind",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "India",
+							"disabled": true
+						},
+						{
+							"key": "name__startswith",
+							"value": "In",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Country Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/countries/105/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"countries",
+						"105",
+						""
+					],
+					"query": [
+						{
+							"key": "name__contains",
+							"value": "Ind",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "India",
+							"disabled": true
+						},
+						{
+							"key": "name__startswith",
+							"value": "In",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Countries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/countries?name=India",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"countries"
+					],
+					"query": [
+						{
+							"key": "name__contains",
+							"value": "Ind",
+							"disabled": true
+						},
+						{
+							"key": "name__startswith",
+							"value": "In",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "India"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Country",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"New Country\",\n    \"geom\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n            [\n                [\n                    -69.99693762899992,\n                    12.577582098000036\n                ],\n                [\n                    -69.93639075399994,\n                    12.53172435100005\n                ],\n                [\n                    -69.92467200399994,\n                    12.519232489000046\n                ],\n                [\n                    -69.91576087099992,\n                    12.497015692000076\n                ],\n                [\n                    -69.88019771999984,\n                    12.453558661000045\n                ],\n                [\n                    -69.87682044199994,\n                    12.427394924000097\n                ],\n                [\n                    -69.88809160099993,\n                    12.417669989000046\n                ],\n                [\n                    -69.90880286399994,\n                    12.417792059000107\n                ],\n                [\n                    -69.93053137899989,\n                    12.425970770000035\n                ],\n                [\n                    -69.94513912699992,\n                    12.44037506700009\n                ],\n                [\n                    -69.92467200399994,\n                    12.44037506700009\n                ],\n                [\n                    -69.92467200399994,\n                    12.447211005000014\n                ],\n                [\n                    -69.95856686099992,\n                    12.463202216000099\n                ],\n                [\n                    -70.02765865799992,\n                    12.522935289000088\n                ],\n                [\n                    -70.04808508999989,\n                    12.53115469000008\n                ],\n                [\n                    -70.05809485599988,\n                    12.537176825000088\n                ],\n                [\n                    -70.06240800699987,\n                    12.546820380000057\n                ],\n                [\n                    -70.06037350199995,\n                    12.556952216000113\n                ],\n                [\n                    -70.0510961579999,\n                    12.574042059000064\n                ],\n                [\n                    -70.04873613199993,\n                    12.583726304000024\n                ],\n                [\n                    -70.05264238199993,\n                    12.600002346000053\n                ],\n                [\n                    -70.05964107999992,\n                    12.614243882000054\n                ],\n                [\n                    -70.06110592399997,\n                    12.625392971000068\n                ],\n                [\n                    -70.04873613199993,\n                    12.632147528000104\n                ],\n                [\n                    -70.00715084499987,\n                    12.5855166690001\n                ],\n                [\n                    -69.99693762899992,\n                    12.577582098000036\n                ]\n            ]\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/countries/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"countries",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Country",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"New Country\",\n    \"geom\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n            [\n                [\n                    -69.99693762899992,\n                    12.577582098000036\n                ],\n                [\n                    -69.93639075399994,\n                    12.53172435100005\n                ],\n                [\n                    -69.92467200399994,\n                    12.519232489000046\n                ],\n                [\n                    -69.91576087099992,\n                    12.497015692000076\n                ],\n                [\n                    -69.88019771999984,\n                    12.453558661000045\n                ],\n                [\n                    -69.87682044199994,\n                    12.427394924000097\n                ],\n                [\n                    -69.88809160099993,\n                    12.417669989000046\n                ],\n                [\n                    -69.90880286399994,\n                    12.417792059000107\n                ],\n                [\n                    -69.93053137899989,\n                    12.425970770000035\n                ],\n                [\n                    -69.94513912699992,\n                    12.44037506700009\n                ],\n                [\n                    -69.92467200399994,\n                    12.44037506700009\n                ],\n                [\n                    -69.92467200399994,\n                    12.447211005000014\n                ],\n                [\n                    -69.95856686099992,\n                    12.463202216000099\n                ],\n                [\n                    -70.02765865799992,\n                    12.522935289000088\n                ],\n                [\n                    -70.04808508999989,\n                    12.53115469000008\n                ],\n                [\n                    -70.05809485599988,\n                    12.537176825000088\n                ],\n                [\n                    -70.06240800699987,\n                    12.546820380000057\n                ],\n                [\n                    -70.06037350199995,\n                    12.556952216000113\n                ],\n                [\n                    -70.0510961579999,\n                    12.574042059000064\n                ],\n                [\n                    -70.04873613199993,\n                    12.583726304000024\n                ],\n                [\n                    -70.05264238199993,\n                    12.600002346000053\n                ],\n                [\n                    -70.05964107999992,\n                    12.614243882000054\n                ],\n                [\n                    -70.06110592399997,\n                    12.625392971000068\n                ],\n                [\n                    -70.04873613199993,\n                    12.632147528000104\n                ],\n                [\n                    -70.00715084499987,\n                    12.5855166690001\n                ],\n                [\n                    -69.99693762899992,\n                    12.577582098000036\n                ]\n            ]\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/countries/257/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"countries",
+						"257",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Country",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/countries/257/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"countries",
+						"257",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
